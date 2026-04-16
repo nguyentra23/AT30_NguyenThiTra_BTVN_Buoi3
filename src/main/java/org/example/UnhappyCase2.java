@@ -9,16 +9,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class UnhappyCase1 {
+public class UnhappyCase2 {
     public static void main(String[] args) {
-        // unhappy case: bỏ trống trường interest
+        // unhappy case: dùng gmail cá nhân
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://saucelabs.com/request-demo");
 
         WebElement email = driver.findElement(By.xpath("//input[@id='Email']"));
-        email.sendKeys("test@company.com");
+        email.sendKeys("nguyentra45678@gmail.com");
 
         WebElement firstName = driver.findElement(By.xpath("//input[@id='FirstName']"));
         firstName.sendKeys("Nguyen");
@@ -37,10 +37,10 @@ public class UnhappyCase1 {
         WebElement select1 = driver.findElement(By.xpath("//select[@id='Country']/descendant::option[contains(text(),'Vietnam')]"));
         select1.click();
 
-        /*WebElement interest = driver.findElement(By.xpath("//select[@id='Solution_Interest__c']"));
+        WebElement interest = driver.findElement(By.xpath("//select[@id='Solution_Interest__c']"));
         interest.click();
         WebElement select2 = driver.findElement(By.xpath("//select[@id='Solution_Interest__c']/descendant::option[contains(text(),'Sauce AI Agents')]"));
-        select2.click();*/
+        select2.click();
 
         WebElement comment = driver.findElement(By.xpath("//textarea[@name='Sales_Contact_Comments__c']"));
         comment.sendKeys("DevPro");
@@ -54,7 +54,7 @@ public class UnhappyCase1 {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement errorMsg = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[contains(text(),'This field is required')]")
+                        By.xpath("//div[contains(text(),'Enter valid business email address')]")
                 )
         );
 
@@ -66,7 +66,7 @@ public class UnhappyCase1 {
         System.out.println("Current URL: " + currentUrl);
 
         // 3. ASSERT
-        if(errorText.contains("This field is required")
+        if(errorText.contains("Enter valid business email address")
                 && !currentUrl.contains("thank-you-contact")){
 
             System.out.println("TEST PASS - Unhappy Case");
