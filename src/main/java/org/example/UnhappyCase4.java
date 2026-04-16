@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class UnhappyCase4 {
     public static void main(String[] args) {
-        // unhappy case: không nhập gmail
+        // unhappy case: nhập gmail thiếu domain
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
